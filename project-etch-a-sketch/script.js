@@ -1,8 +1,7 @@
 //declare body container reference
 const body = document.querySelector("body");
 
-//declare variable for mouseout event as false
-let isColorChanged = false;
+
 
 //create box div element
 const box = document.createElement("div");
@@ -31,13 +30,31 @@ playButton.classList("button");
 body.append(box);
 
 //add mouseover event listener to make squares change color
-
-    //declare red, green, and blue variables using Math.random to randomize color value for background color rgb input
+square.addEventListener("mouseover", () => {
+    //declare variable for mouseout event as false
+    let id = target.id,
+        targetSquare = document.getElementById(id);
 
     //if statement to check for whether square color changed
+    if(id.slice(-1) === "c"){
+        let targetStyles = window.getComputedStyle(targetSquare),
+            targetBackgroundColor = targetStyles.backgroundColor,
+            rgbValues = targetBackgroundColor.match(/\d+/g),
+            newRed = Math.max(0, rgbValues[0] * 0.9),
+            newGreen = Math.max(0, rgbValues[1] * 0.9),
+            newBlue = Math.max(0, rgbValues[2] * 0.9);
+        targetSquare.style.backgroundColor = 'rgb(${newRed}, ${newGreen}, ${newBlue})';
+    }
+    //else set color
+    else{
+        let red = Math.floor(Math.random() * 161 + 70),
+            green = Math.floor(Math.random() * 161 + 70),
+            blue = Math.floor(Math.random() * 161 + 70);
         //squares set to random color based off red, green, blue variables
-    //else color darkening per interaction
-
+        targetSquare.style.backgroundColor = 'rgb(${red}, ${green}, ${blue})';
+        target.id += "c";
+    }
+});
 //add mouseout event listener to set status of color change
     //set mouseout variable to true
 
@@ -62,11 +79,12 @@ playButton.addEventListener("click", () => {
         let row = document.createElement("div");
 
         //create user specified number of square div elements *loop
-        for(i = 0; i < dimensions; i++){
+        for(i = 1; i <= dimensions; i++){
             //createElement call for squares
             let square = document.createElement("div");
             //apply .square class with classlist --> styles referred to in css
             square.classList("square");
+            square.id = "square" + i;
             //append square divs in row div
             row.append(square);
         }
@@ -76,4 +94,4 @@ playButton.addEventListener("click", () => {
         //append all row divs in box div
         box.append(row);       
     }
-})
+});
