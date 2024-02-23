@@ -44,7 +44,7 @@ body.append(box);
 //add event listener to create grid and start game of etch-a-sketch
 playButton.addEventListener("click", () => {
 
-    //browser will prompt user for row*column dimension number
+    //browser will prompt user for row*column dimension number that must be a number between 1 and 100
     do{
         let dimensions = prompt("Set x for a x*x grid of Etch-A-Sketch squares(Maximum of 100).");
         if(0 < dimensions <= 100 && typeof dimensions === 'number'){
@@ -56,13 +56,18 @@ playButton.addEventListener("click", () => {
         }
     }while (i = false)
     //create user specified number of row div elements *loop
-            
+    for(i = 0; i < dimensions; i++){        
+        //createElement call for rows
+        const row = document.createElement("div");
+
             //create user specified number of square div elements *loop
                 //createElement call for squares
                 //append square divs in row div
                 //apply .square class with classlist --> styles referred to in css
         
-        //createElement call for rows
-        //append all row divs in box div
         //apply .row class with classlist --> styles referred to in css
+        row.classList("row");
+        //append all row divs in box div
+        box.append(row);       
+    }
 })
