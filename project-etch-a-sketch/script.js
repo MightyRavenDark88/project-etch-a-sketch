@@ -55,16 +55,22 @@ playButton.addEventListener("click", () => {
             i = false;
         }
     }while (i = false)
+
     //create user specified number of row div elements *loop
     for(i = 0; i < dimensions; i++){        
         //createElement call for rows
-        const row = document.createElement("div");
+        let row = document.createElement("div");
 
-            //create user specified number of square div elements *loop
-                //createElement call for squares
-                //append square divs in row div
-                //apply .square class with classlist --> styles referred to in css
-        
+        //create user specified number of square div elements *loop
+        for(i = 0; i < dimensions; i++){
+            //createElement call for squares
+            let square = document.createElement("div");
+            //apply .square class with classlist --> styles referred to in css
+            square.classList("square");
+            //append square divs in row div
+            row.append(square);
+        }
+
         //apply .row class with classlist --> styles referred to in css
         row.classList("row");
         //append all row divs in box div
