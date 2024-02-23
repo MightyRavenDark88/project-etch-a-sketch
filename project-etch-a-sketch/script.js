@@ -19,18 +19,19 @@ body.append(header);
 header.classList("header");
 
 //create button to set number of squares
-const dimButton = document.createElement("button");
+const playButton = document.createElement("button");
 //add button text content
-dimButton.textContent = "Play";
+playButton.textContent = "Play";
 //append play button to header div
-header.append(dimButton);
+header.append(playButton);
 //apply .button class with classlist --> styles referred to in css
-dimButton.classList("button");
+playButton.classList("button");
 
 //append box div to body
 body.append(box);
 
 //add mouseover event listener to make squares change color
+
     //declare red, green, and blue variables using Math.random to randomize color value for background color rgb input
 
     //if statement to check for whether square color changed
@@ -41,9 +42,19 @@ body.append(box);
     //set mouseout variable to true
 
 //add event listener to create grid and start game of etch-a-sketch
-    
+playButton.addEventListener("click", () => {
+
     //browser will prompt user for row*column dimension number
-    
+    do{
+        let dimensions = prompt("Set x for a x*x grid of Etch-A-Sketch squares(Maximum of 100).");
+        if(0 < dimensions <= 100 && typeof dimensions === 'number'){
+            i = true;
+        }
+        else{
+            prompt("That is not a valid entry. Choose a number from 1 to 100.");
+            i = false;
+        }
+    }while (i = false)
     //create user specified number of row div elements *loop
             
             //create user specified number of square div elements *loop
@@ -54,3 +65,4 @@ body.append(box);
         //createElement call for rows
         //append all row divs in box div
         //apply .row class with classlist --> styles referred to in css
+})
