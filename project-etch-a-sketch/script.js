@@ -63,35 +63,34 @@ playButton.addEventListener("click", () => {
 
     //browser will prompt user for row*column dimension number that must be a number between 1 and 100
     do{
-        let dimensions = prompt("Set x for a x*x grid of Etch-A-Sketch squares(Maximum of 100).");
+        let dimensions = parseInt(prompt("Set x for a x*x grid of Etch-A-Sketch squares(Maximum of 100)."));
         if(0 < dimensions <= 100 && typeof dimensions === 'number'){
-            i = true;
+            i = true;        
+            //create user specified number of row div elements *loop
+            for(i = 0; i < dimensions; i++){        
+                //createElement call for rows
+                let row = document.createElement("div");
+
+                //create user specified number of square div elements *loop
+                for(i = 1; i <= dimensions; i++){
+                    //createElement call for squares
+                    square = document.createElement("div");
+                    //apply .square class with className --> styles referred to in css
+                    square.className = "square";
+                    square.id = "square" + i;
+                    //append square divs in row div
+                    row.append(square);
+                }
+
+                //apply .row class with className --> styles referred to in css
+                row.className = "row";
+                //append all row divs in box div
+                box.append(row);       
+            }
         }
         else{
             prompt("That is not a valid entry. Choose a number from 1 to 100.");
             i = false;
         }
-    }while (i = false)
-
-    //create user specified number of row div elements *loop
-    for(i = 0; i < dimensions; i++){        
-        //createElement call for rows
-        let row = document.createElement("div");
-
-        //create user specified number of square div elements *loop
-        for(i = 1; i <= dimensions; i++){
-            //createElement call for squares
-            square = document.createElement("div");
-            //apply .square class with className --> styles referred to in css
-            square.className = "square";
-            square.id = "square" + i;
-            //append square divs in row div
-            row.append(square);
-        }
-
-        //apply .row class with className --> styles referred to in css
-        row.className = "row";
-        //append all row divs in box div
-        box.append(row);       
-    }
+    }while (i = false)   
 });
