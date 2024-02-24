@@ -30,29 +30,31 @@ playButton.className = "button";
 body.append(box);
 
 //add mouseover event listener to make squares change color
-square.addEventListener("mouseover", () => {
-    //declare variable for mouseout event as false
-    let id = target.id,
-        targetSquare = document.getElementById(id);
+document.addEventListener("mouseover", () => {
+    if(event.target.classList.contains("square")){
+        //declare variable for mouseout event as false
+        let id = target.id,
+            targetSquare = document.getElementById(id);
 
-    //if statement to check for whether square color changed
-    if(id.slice(-1) === "c"){
-        let targetStyles = window.getComputedStyle(targetSquare),
-            targetBackgroundColor = targetStyles.backgroundColor,
-            rgbValues = targetBackgroundColor.match(/\d+/g),
-            newRed = Math.max(0, rgbValues[0] * 0.9),
-            newGreen = Math.max(0, rgbValues[1] * 0.9),
-            newBlue = Math.max(0, rgbValues[2] * 0.9);
-        targetSquare.style.backgroundColor = 'rgb(${newRed}, ${newGreen}, ${newBlue})';
-    }
-    //else set color
-    else{
-        let red = Math.floor(Math.random() * 161 + 70),
-            green = Math.floor(Math.random() * 161 + 70),
-            blue = Math.floor(Math.random() * 161 + 70);
-        //squares set to random color based off red, green, blue variables
-        targetSquare.style.backgroundColor = 'rgb(${red}, ${green}, ${blue})';
-        target.id += "c";
+        //if statement to check for whether square color changed
+        if(id.slice(-1) === "c"){
+            let targetStyles = window.getComputedStyle(targetSquare),
+                targetBackgroundColor = targetStyles.backgroundColor,
+                rgbValues = targetBackgroundColor.match(/\d+/g),
+                newRed = Math.max(0, rgbValues[0] * 0.9),
+                newGreen = Math.max(0, rgbValues[1] * 0.9),
+                newBlue = Math.max(0, rgbValues[2] * 0.9);
+            targetSquare.style.backgroundColor = 'rgb(${newRed}, ${newGreen}, ${newBlue})';
+        }
+        //else set color
+        else{
+            let red = Math.floor(Math.random() * 161 + 70),
+                green = Math.floor(Math.random() * 161 + 70),
+                blue = Math.floor(Math.random() * 161 + 70);
+            //squares set to random color based off red, green, blue variables
+            targetSquare.style.backgroundColor = 'rgb(${red}, ${green}, ${blue})';
+            target.id += "c";
+        }
     }
 });
 
@@ -79,7 +81,7 @@ playButton.addEventListener("click", () => {
         //create user specified number of square div elements *loop
         for(i = 1; i <= dimensions; i++){
             //createElement call for squares
-            let square = document.createElement("div");
+            square = document.createElement("div");
             //apply .square class with className --> styles referred to in css
             square.className = "square";
             square.id = "square" + i;
