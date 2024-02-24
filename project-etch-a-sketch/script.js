@@ -31,9 +31,9 @@ body.append(box);
 
 //add mouseover event listener to make squares change color
 document.addEventListener("mouseover", () => {
-    if(event.target.classList.contains("square")){
+    if(event.target.classList.contains(".square")){
         //declare variable for mouseout event as false
-        let id = target.id,
+        let id = event.target.id,
             targetSquare = document.getElementById(id);
 
         //if statement to check for whether square color changed
@@ -53,7 +53,7 @@ document.addEventListener("mouseover", () => {
                 blue = Math.floor(Math.random() * 161 + 70);
             //squares set to random color based off red, green, blue variables
             targetSquare.style.backgroundColor = 'rgb(${red}, ${green}, ${blue})';
-            target.id += "c";
+            event.target.id += "c";
         }
     }
 });
@@ -61,20 +61,23 @@ document.addEventListener("mouseover", () => {
 //add event listener to create grid and start game of etch-a-sketch
 playButton.addEventListener("click", () => {
 
+    while(box.firstChild){
+        box.removeChild(box.firstChild);
+    }
     //browser will prompt user for row*column dimension number that must be a number between 1 and 100
     do{
         let dimensions = parseInt(prompt("Set x for a x*x grid of Etch-A-Sketch squares(Maximum of 100)."));
         if(0 < dimensions <= 100 && typeof dimensions === 'number'){
             i = true;        
             //create user specified number of row div elements *loop
-            for(i = 0; i < dimensions; i++){        
+            for(let a = 0; a < dimensions; a++){        
                 //createElement call for rows
                 let row = document.createElement("div");
 
                 //create user specified number of square div elements *loop
-                for(i = 1; i <= dimensions; i++){
+                for(let i = 1; i <= dimensions; i++){
                     //createElement call for squares
-                    square = document.createElement("div");
+                    const square = document.createElement("div");
                     //apply .square class with className --> styles referred to in css
                     square.className = "square";
                     square.id = "square" + i;
