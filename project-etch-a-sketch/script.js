@@ -30,29 +30,31 @@ playButton.className = "button";
 body.append(box);
 
 //add mouseover event listener to make squares change color
-document.addEventListener("mouseover", () => {
-    if(event.target.classList.contains(".square")){
+document.addEventListener("mouseover", (event) => {
+    
+    if(event.target.classList.contains("square")){
+    
         //declare variable for mouseout event as false
         let id = event.target.id,
             targetSquare = document.getElementById(id);
 
         //if statement to check for whether square color changed
         if(id.slice(-1) === "c"){
-            let targetStyles = window.getComputedStyle(targetSquare),
-                targetBackgroundColor = targetStyles.backgroundColor,
-                rgbValues = targetBackgroundColor.match(/\d+/g),
-                newRed = Math.max(0, rgbValues[0] * 0.9),
-                newGreen = Math.max(0, rgbValues[1] * 0.9),
-                newBlue = Math.max(0, rgbValues[2] * 0.9);
-            targetSquare.style.backgroundColor = 'rgb(${newRed}, ${newGreen}, ${newBlue})';
+            let targetStyles = window.getComputedStyle(event.target);
+            let targetBackgroundColor = targetStyles.backgroundColor;
+            let rgbValues = targetBackgroundColor.match(/\d+/g);
+                newRed = parseInt(rgbValues[0]) * 0.9,
+                newGreen = parseInt(rgbValues[1]) * 0.9,
+                newBlue = parseInt(rgbValues[2]) * 0.9;
+            event.target.style.backgroundColor = `rgb(${newRed}, ${newGreen}, ${newBlue})`;
         }
         //else set color
         else{
-            let red = Math.floor(Math.random() * 161 + 70),
-                green = Math.floor(Math.random() * 161 + 70),
-                blue = Math.floor(Math.random() * 161 + 70);
+            let redRand = Math.floor(Math.random() * 161 + 70),
+                greenRand = Math.floor(Math.random() * 161 + 70),
+                blueRand = Math.floor(Math.random() * 161 + 70);
             //squares set to random color based off red, green, blue variables
-            targetSquare.style.backgroundColor = 'rgb(${red}, ${green}, ${blue})';
+            event.target.style.backgroundColor = `rgb(${redRand}, ${greenRand}, ${blueRand})`;
             event.target.id += "c";
         }
     }
@@ -83,6 +85,7 @@ playButton.addEventListener("click", () => {
                     square.id = "square" + i;
                     //append square divs in row div
                     row.append(square);
+                    
                 }
 
                 //apply .row class with className --> styles referred to in css
