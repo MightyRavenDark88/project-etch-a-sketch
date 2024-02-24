@@ -43,9 +43,9 @@ document.addEventListener("mouseover", (event) => {
             let targetStyles = window.getComputedStyle(event.target);
             let targetBackgroundColor = targetStyles.backgroundColor;
             let rgbValues = targetBackgroundColor.match(/\d+/g);
-                newRed = parseInt(rgbValues[0]) * 0.9,
-                newGreen = parseInt(rgbValues[1]) * 0.9,
-                newBlue = parseInt(rgbValues[2]) * 0.9;
+                newRed = parseInt(rgbValues[0]) - (parseInt(rgbValues[0]) * 0.2),
+                newGreen = parseInt(rgbValues[1]) - (parseInt(rgbValues[1]) * 0.2),
+                newBlue = parseInt(rgbValues[2]) - (parseInt(rgbValues[2]) * 0.2);
             event.target.style.backgroundColor = `rgb(${newRed}, ${newGreen}, ${newBlue})`;
         }
         //else set color
