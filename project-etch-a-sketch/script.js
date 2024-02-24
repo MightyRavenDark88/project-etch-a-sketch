@@ -5,8 +5,8 @@ const body = document.querySelector("body");
 
 //create box div element
 const box = document.createElement("div");
-//apply .box class with classlist --> styles referred to in css
-box.classList("box");
+//apply .box class with className --> styles referred to in css
+box.className = "box";
 
 //create header div for title of the game
 const header = document.createElement("div");
@@ -14,8 +14,8 @@ const header = document.createElement("div");
 header.textContent = "Etch-A-Sketch";
 //append header div to body
 body.append(header);
-//apply .header class with classlist --> styles referred to in css
-header.classList("header");
+//apply .header class with className --> styles referred to in css
+header.className = "header";
 
 //create button to set number of squares
 const playButton = document.createElement("button");
@@ -23,8 +23,8 @@ const playButton = document.createElement("button");
 playButton.textContent = "Play";
 //append play button to header div
 header.append(playButton);
-//apply .button class with classlist --> styles referred to in css
-playButton.classList("button");
+//apply .button class with className --> styles referred to in css
+playButton.className = "button";
 
 //append box div to body
 body.append(box);
@@ -55,8 +55,6 @@ square.addEventListener("mouseover", () => {
         target.id += "c";
     }
 });
-//add mouseout event listener to set status of color change
-    //set mouseout variable to true
 
 //add event listener to create grid and start game of etch-a-sketch
 playButton.addEventListener("click", () => {
@@ -82,15 +80,15 @@ playButton.addEventListener("click", () => {
         for(i = 1; i <= dimensions; i++){
             //createElement call for squares
             let square = document.createElement("div");
-            //apply .square class with classlist --> styles referred to in css
-            square.classList("square");
+            //apply .square class with className --> styles referred to in css
+            square.className = "square";
             square.id = "square" + i;
             //append square divs in row div
             row.append(square);
         }
 
-        //apply .row class with classlist --> styles referred to in css
-        row.classList("row");
+        //apply .row class with className --> styles referred to in css
+        row.className = "row";
         //append all row divs in box div
         box.append(row);       
     }
